@@ -31,6 +31,20 @@ public class YatzyImpl implements Yatzy {
     }
 
     @Override
+    public int twoPair(int d1, int d2, int d3, int d4, int d5) {
+        int[] diceOccurences = countDiceOccurences(d1, d2, d3, d4, d5);
+        int score = 0;
+        int numberOfPairs = 0;
+        for (int i = 5; i > 0; i--) {
+            if (diceOccurences[i] >= 2) {
+                score += (i + 1) * 2;
+                numberOfPairs++;
+            }
+        }
+        return (numberOfPairs == 2) ? score : 0;
+    }
+
+    @Override
     public int threeOfAKind(int d1, int d2, int d3, int d4, int d5) {
         return computeScoreForNumberOfOccurences(3, d1, d2, d3, d4, d5);
     }
@@ -66,19 +80,6 @@ public class YatzyImpl implements Yatzy {
         return 0;
     }
 
-    @Override
-    public int twoPair(int d1, int d2, int d3, int d4, int d5) {
-        int[] diceOccurences = countDiceOccurences(d1, d2, d3, d4, d5);
-        int score = 0;
-        int numberOfPairs = 0;
-        for (int i = 5; i > 0; i--) {
-            if (diceOccurences[i] >= 2) {
-                score += (i + 1) * 2;
-                numberOfPairs++;
-            }
-        }
-        return (numberOfPairs == 2) ? score : 0;
-    }
 
     @Override
     public int smallStraight(int d1, int d2, int d3, int d4, int d5) {
