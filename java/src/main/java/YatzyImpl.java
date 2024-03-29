@@ -11,27 +11,27 @@ public class YatzyImpl implements Yatzy {
     }
 
     @Override
-    public int chance(int d1, int d2, int d3, int d4, int d5) {
+    public int computeChanceScore(int d1, int d2, int d3, int d4, int d5) {
         return IntStream.of(d1, d2, d3, d4, d5).sum();
     }
 
     @Override
-    public int yatzy(int d1, int d2, int d3, int d4, int d5) {
+    public int computeYatzyScore(int d1, int d2, int d3, int d4, int d5) {
         return IntStream.of(d2, d3, d4, d5).allMatch(die -> die == d1) ? 50 : 0;
     }
 
     @Override
-    public int sumOfSpecificDice(int diceValue, int d1, int d2, int d3, int d4, int d5) {
+    public int computeSumOfSpecificDice(int diceValue, int d1, int d2, int d3, int d4, int d5) {
         return IntStream.of(d1, d2, d3, d4, d5).filter(i -> i == diceValue).sum();
     }
 
     @Override
-    public int onePair(int d1, int d2, int d3, int d4, int d5) {
+    public int computeOnePairScore(int d1, int d2, int d3, int d4, int d5) {
         return computeScoreForNumberOfOccurences(2, d1, d2, d3, d4, d5);
     }
 
     @Override
-    public int twoPair(int d1, int d2, int d3, int d4, int d5) {
+    public int computeTwoPairsScore(int d1, int d2, int d3, int d4, int d5) {
         int[] diceOccurences = countDiceOccurences(d1, d2, d3, d4, d5);
         int score = 0;
         int numberOfPairs = 0;
@@ -45,13 +45,13 @@ public class YatzyImpl implements Yatzy {
     }
 
     @Override
-    public int threeOfAKind(int d1, int d2, int d3, int d4, int d5) {
+    public int computeThreeOfAKindScore(int d1, int d2, int d3, int d4, int d5) {
         return computeScoreForNumberOfOccurences(3, d1, d2, d3, d4, d5);
     }
 
 
     @Override
-    public int fourOfAKind(int d1, int d2, int d3, int d4, int d5) {
+    public int computefourOfAKindScore(int d1, int d2, int d3, int d4, int d5) {
         return computeScoreForNumberOfOccurences(4, d1, d2, d3, d4, d5);
     }
 
@@ -71,29 +71,21 @@ public class YatzyImpl implements Yatzy {
         return counts;
     }
 
-    private int computeStraightScore(int... dice) {
-        final int[] diceOccurences = countDiceOccurences(dice);
-        if(Arrays.equals(diceOccurences, SMALL_STRAIGHT_OCCURENCES))
-            return 15;
-        if(Arrays.equals(diceOccurences, LARGE_STRAIGHT_OCCURENCES))
-            return 20;
-        return 0;
+    @Override
+    public int computeSmallStraight(int d1, int d2, int d3, int d4, int d5) {
+        final int[] diceOccurences = countDiceOccurences(d1,  d2,  d3,  d4, d5);
+        return (Arrays.equals(diceOccurences, SMALL_STRAIGHT_OCCURENCES))? 15 : 0;
     }
 
 
     @Override
-    public int smallStraight(int d1, int d2, int d3, int d4, int d5) {
-        return computeStraightScore(d1,  d2,  d3,  d4, d5);
-    }
-
-
-    @Override
-    public int largeStraight(int d1, int d2, int d3, int d4, int d5) {
-        return computeStraightScore(d1,  d2,  d3,  d4, d5);
+    public int computeLargeStraight(int d1, int d2, int d3, int d4, int d5) {
+        final int[] diceOccurences = countDiceOccurences(d1,  d2,  d3,  d4, d5);
+        return (Arrays.equals(diceOccurences, LARGE_STRAIGHT_OCCURENCES))? 20 : 0;
     }
 
     @Override
-    public int fullHouse(int d1, int d2, int d3, int d4, int d5) {
+    public int computeFullHouseScore(int d1, int d2, int d3, int d4, int d5) {
         final int[] diceOccurences = countDiceOccurences(d1, d2, d3, d4, d5);
         boolean contains2 = false;
         boolean contains3 = false;

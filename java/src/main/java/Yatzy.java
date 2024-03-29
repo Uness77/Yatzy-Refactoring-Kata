@@ -12,7 +12,7 @@ public interface Yatzy {
      * the individual values of a dices, ranging from 1 to 6.
      * @return The total score for "Chance", which is the sum of the values of the five dice.
      */
-    int chance(int d1, int d2, int d3, int d4, int d5);
+    int computeChanceScore(int d1, int d2, int d3, int d4, int d5);
 
     /**
      * If all dice have the same number, the player scores 50 points. For example:
@@ -23,7 +23,7 @@ public interface Yatzy {
      * the individual values of a dices, ranging from 1 to 6.
      * @return Yatzy score 50 points if all dice have the same number otherwise the score is 0
      */
-    int yatzy(int d1, int d2, int d3, int d4, int d5);
+    int computeYatzyScore(int d1, int d2, int d3, int d4, int d5);
 
     /**
      * The player scores the sum of the dice that reads one, two, three, four, five or six, respectively. For example:
@@ -35,7 +35,7 @@ public interface Yatzy {
      * the individual values of a dices, ranging from 1 to 6.
      * @return score of the sum of the dice that reads one, two, three, four, five or six, respectively otherwise the score is 0
      */
-    int sumOfSpecificDice(int diceValue, int d1, int d2, int d3, int d4, int d5);
+    int computeSumOfSpecificDice(int diceValue, int d1, int d2, int d3, int d4, int d5);
 
     /**
      * The player scores the sum of the two highest matching dice. For example, when placed on “pair”:
@@ -49,7 +49,7 @@ public interface Yatzy {
      * the individual values of a dices, ranging from 1 to 6.
      * @return the sum of the two highest matching dice. otherwise the score is 0
      */
-    int onePair(int d1, int d2, int d3, int d4, int d5);
+    int computeOnePairScore(int d1, int d2, int d3, int d4, int d5);
 
 
     /**
@@ -63,7 +63,7 @@ public interface Yatzy {
      * the individual values of a dices, ranging from 1 to 6.
      * @return the sum of the dices forming two pairs otherwise the score is 0.
      */
-    int twoPair(int d1, int d2, int d3, int d4, int d5);
+    int computeTwoPairsScore(int d1, int d2, int d3, int d4, int d5);
 
     /**
      * If there are three dice with the same number, the player scores the sum of these dice. For example, when placed on “three of a kind”:
@@ -75,7 +75,7 @@ public interface Yatzy {
      * the individual values of a dices, ranging from 1 to 6.
      * @return the sum of the dices forming three pairs otherwise the score is 0.
      */
-    int threeOfAKind(int d1, int d2, int d3, int d4, int d5);
+    int computeThreeOfAKindScore(int d1, int d2, int d3, int d4, int d5);
 
     /**
      * If there are four dice with the same number, the player scores the sum of these dice. For example, when placed on “four of a kind”:
@@ -87,7 +87,7 @@ public interface Yatzy {
      * the individual values of a dices, ranging from 1 to 6.
      * @return the sum of the dices forming four pairs otherwise the score is 0.
      */
-    int fourOfAKind(int d1, int d2, int d3, int d4, int d5);
+    int computefourOfAKindScore(int d1, int d2, int d3, int d4, int d5);
 
 
     /**
@@ -99,7 +99,7 @@ public interface Yatzy {
      * the individual values of a dices, ranging from 1 to 6.
      * @return 15 when we have a small Straight (sum of dices) otherwise the score is 0.
      */
-    int smallStraight(int d1, int d2, int d3, int d4, int d5);
+    int computeSmallStraight(int d1, int d2, int d3, int d4, int d5);
 
     /**
      * When placed on “large straight”, if the dice read
@@ -110,7 +110,7 @@ public interface Yatzy {
      * the individual values of a dices, ranging from 1 to 6.
      * @return 20 when we have a small Straight (sum of dices) otherwise the score is 0.
      */
-    int largeStraight(int d1, int d2, int d3, int d4, int d5);
+    int computeLargeStraight(int d1, int d2, int d3, int d4, int d5);
 
     /**
      * If the dice are two of a kind and three of a kind, the player scores the sum of all the dice. For example, when placed on “full house”:
@@ -122,5 +122,5 @@ public interface Yatzy {
      * the individual values of a dices, ranging from 1 to 6.
      * @return The total score =  sum of all the dice on fullhouse otherwise the score is 0.
      */
-    int fullHouse(int d1, int d2, int d3, int d4, int d5);
+    int computeFullHouseScore(int d1, int d2, int d3, int d4, int d5);
 }
